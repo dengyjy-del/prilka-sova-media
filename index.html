@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sova Media</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #0a1128, #13224b, #0a1128); /* Темно-синий градиент */
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .background-blobs {
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            top: -25%;
+            left: -25%;
+            z-index: 0;
+            opacity: 0.5;
+            background: radial-gradient(circle, #fdb813 0%, transparent 50%),
+                        radial-gradient(circle at 10% 90%, #fdb813 0%, transparent 50%),
+                        radial-gradient(circle at 90% 10%, #fdb813 0%, transparent 50%);
+            animation: moveBlobs 20s infinite alternate;
+        }
+
+        @keyframes moveBlobs {
+            0% { transform: rotate(0deg) scale(1); }
+            100% { transform: rotate(360deg) scale(1.2); }
+        }
+
+        .app-container {
+            width: 375px;
+            height: 812px;
+            background: rgba(255, 255, 255, 0.08); /* Полупрозрачный белый */
+            border-radius: 40px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            padding: 24px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .profile-pic {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 2px solid #fdb813; /* Желтая рамка */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 0;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .content-card {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 600;
+            opacity: 0.9;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .stat-subtext {
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+        .cta-card {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .cta-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .cta-button {
+            background: #fdb813; /* Яркая желтая кнопка */
+            border-radius: 12px;
+            padding: 12px 20px;
+            border: none;
+            color: #0a1128; /* Темно-синий текст */
+            font-weight: 700;
+            text-decoration: none;
+            text-align: center;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+
+        .navigation {
+            position: absolute;
+            bottom: 24px;
+            width: calc(100% - 48px);
+            height: 60px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 30px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 16px;
+        }
+
+        .nav-item {
+            color: white;
+            font-size: 12px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .nav-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .nav-icon {
+            height: 24px;
+            width: 24px;
+            fill: white;
+            margin-bottom: 4px;
+        }
+
+        .active-nav .nav-icon {
+            fill: #fdb813;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="background-blobs"></div>
+
+    <div class="app-container">
+        <div class="header">
+            <div>
+                <h1>Привет,</h1>
+                <h1>Будущий Клиент!</h1>
+            </div>
+            <img class="profile-pic" src="https://via.placeholder.com/150/fdb813/0a1128?text=SM" alt="Sova Media">
+        </div>
+
+        <div class="content-card">
+            <span class="card-title">Короткий урок по маркетингу</span>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <span class="stat-value">5 шагов</span>
+                    <span class="stat-subtext">к успешной рекламе</span>
+                </div>
+                <a href="#" class="cta-button" style="background: rgba(255, 255, 255, 0.2); color: white; border: 1px solid rgba(255, 255, 255, 0.3);">Начать</a>
+            </div>
+        </div>
+
+        <div class="cta-card">
+            <span class="cta-title">Наши лучшие кейсы</span>
+            <span class="stat-subtext">Узнайте, как мы помогли бизнесу вырасти в несколько раз.</span>
+            <a href="#" class="cta-button">Смотреть кейсы</a>
+        </div>
+
+        <div class="stats-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="content-card">
+                <span class="card-title">Бесплатная консультация</span>
+                <span class="stat-subtext">Обсудите вашу задачу с нашим экспертом.</span>
+                <a href="#" class="cta-button" style="background: #fdb813; color: #0a1128; border: none;">Получить</a>
+            </div>
+            <div class="content-card">
+                <span class="card-title">Привлечение клиентов из ВК</span>
+                <span class="stat-subtext">Пошаговая инструкция для вашего бизнеса.</span>
+                <a href="#" class="cta-button" style="background: rgba(255, 255, 255, 0.2); color: white; border: 1px solid rgba(255, 255, 255, 0.3);">Читать</a>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <div class="nav-item">
+                <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg>
+                <span>Главная</span>
+            </div>
+            <div class="nav-item">
+                <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="m180-160 380-160v120q0 33-23.5 56.5T540-120H260q-33 0-56.5-23.5T180-200v-300q0-100 50-175t140-105v-65q0-20-10-35.5t-25-24.5l-40-10q-12-3-19-14t-7-25v-40q0-33 23.5-56.5T260-840h200q33 0 56.5 23.5T540-760v40q0 14-7 25t-19 14l-40 10q-15 4-25 24.5t-10 35.5v65q10-5 25-10.5t30-15.5q80-35 130-110t50-175v-20q0-33 23.5-56.5T700-840h20q33 0 56.5 23.5T800-760v60q0 11-5 21t-15 19l-30 20q-33 23-51.5 55T700-540v300q0 33-23.5 56.5T620-180H480q-50 0-105 10.5t-95 24.5v-20Zm440-220q33 0 56.5-23.5T700-480q0-33-23.5-56.5T620-560q-33 0-56.5 23.5T540-480q0 33 23.5 56.5T620-400Z"/></svg>
+                <span>Уроки</span>
+            </div>
+            <div class="nav-item">
+                <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm80-160q-12 0-21-9t-9-21q0-12 9-21t21-9q12 0 21 9t9 21q0 12-9 21t-21 9Zm0-120q-12 0-21-9t-9-21q0-12 9-21t21-9q12 0 21 9t9 21q0 12-9 21t-21 9Zm0-120q-12 0-21-9t-9-21q0-12 9-21t21-9q12 0 21 9t9 21q0 12-9 21t-21 9Zm120 240q-12 0-21-9t-9-21v-360q0-12 9-21t21-9h280q12 0 21 9t9 21v360q0 12-9 21t-21 9H400Z"/></svg>
+                <span>Кейсы</span>
+            </div>
+            <div class="nav-item active-nav">
+                <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm0-80h640v-480H160v480Zm320-140q41 0 70-29t29-70q0-41-29-70t-70-29q-41 0-70 29t-29 70q0 41 29 70t70 29Zm0 0Z"/></svg>
+                <span>Контакты</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
