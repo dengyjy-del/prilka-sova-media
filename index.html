@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef, #dee2e6);
+            background: linear-gradient(135deg, #2a2a2a, #3c3c3c, #4a4a4a);
             color: #1a1a1a;
             display: flex;
             justify-content: center;
@@ -24,28 +24,29 @@
             top: -25%;
             left: -25%;
             z-index: 0;
-            opacity: 0.5;
-            background: radial-gradient(circle, rgba(200, 200, 200, 0.5) 0%, transparent 50%),
-                        radial-gradient(circle at 10% 90%, rgba(220, 220, 220, 0.5) 0%, transparent 50%),
-                        radial-gradient(circle at 90% 10%, rgba(240, 240, 240, 0.5) 0%, transparent 50%);
-            animation: moveBlobs 20s infinite alternate;
+            background: 
+                radial-gradient(circle at 70% 30%, #444, transparent 50%),
+                radial-gradient(circle at 30% 70%, #555, transparent 50%),
+                radial-gradient(circle at 50% 50%, #e64d6b, transparent 60%);
+            animation: moveGradient 25s infinite alternate ease-in-out;
         }
-
-        @keyframes moveBlobs {
-            0% { transform: rotate(0deg) scale(1); }
-            100% { transform: rotate(360deg) scale(1.2); }
+        
+        @keyframes moveGradient {
+            0% { transform: scale(1) translate(0, 0); }
+            50% { transform: scale(1.2) translate(10%, -10%); }
+            100% { transform: scale(1) translate(0, 0); }
         }
 
         .app-container {
             width: 95%;
             max-width: 450px;
             height: 90vh;
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 40px;
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(50px);
+            -webkit-backdrop-filter: blur(50px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
             padding: 24px;
             box-sizing: border-box;
             display: flex;
@@ -62,14 +63,24 @@
             padding-right: 8px;
             margin-right: -8px;
         }
+        
+        /* Стили для секций контента */
+        .content-section {
+            display: none;
+            padding-bottom: 80px; /* Чтобы контент не перекрывался навигацией */
+        }
+        
+        .content-section.active {
+            display: block;
+        }
 
         .content-card {
-            background: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 20px;
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             padding: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             display: flex;
             flex-direction: column;
             gap: 8px;
@@ -116,14 +127,14 @@
             justify-content: space-around;
             align-items: center;
             height: 60px;
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.15);
             border-radius: 30px;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             padding: 0 16px;
             box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.05);
-            margin-top: auto; /* Прижимает навигацию к низу контейнера */
+            margin-top: auto;
         }
 
         .nav-item {
@@ -149,7 +160,7 @@
             margin-bottom: 4px;
         }
         
-        .active-nav .nav-icon {
+        .nav-item.active .nav-icon {
             fill: #e64d6b;
         }
     </style>
@@ -159,60 +170,114 @@
 
     <div class="app-container">
         <div class="content-wrapper">
-            <div class="content-card">
-                <span class="card-title">Короткий урок по маркетингу</span>
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <div>
-                        <span style="font-size: 14px; font-weight: 600; color: #e64d6b;">5 шагов</span>
-                        <span class="stat-subtext">к успешной рекламе</span>
+            <div id="home" class="content-section active">
+                <div class="content-card">
+                    <span class="card-title">Короткий урок по маркетингу</span>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <span style="font-size: 14px; font-weight: 600; color: #e64d6b;">5 шагов</span>
+                            <span class="stat-subtext">к успешной рекламе</span>
+                        </div>
+                        <a href="#" class="cta-button secondary">Начать</a>
                     </div>
-                    <a href="lessons.html" class="cta-button secondary">Начать</a>
+                </div>
+                <div class="content-card">
+                    <span class="card-title">Наши лучшие кейсы</span>
+                    <span class="stat-subtext">Узнайте, как мы помогли бизнесу вырасти в несколько раз.</span>
+                    <a href="#" class="cta-button">Смотреть кейсы</a>
+                </div>
+                <div class="content-card">
+                    <span class="card-title">Бесплатная консультация</span>
+                    <span class="stat-subtext">Обсудите вашу задачу с нашим экспертом.</span>
+                    <a href="#" class="cta-button">Получить</a>
                 </div>
             </div>
 
-            <div class="content-card">
-                <span class="card-title">Наши лучшие кейсы</span>
-                <span class="stat-subtext">Узнайте, как мы помогли бизнесу вырасти в несколько раз.</span>
-                <a href="cases.html" class="cta-button">Смотреть кейсы</a>
+            <div id="lessons" class="content-section">
+                <div class="content-card">
+                    <span class="card-title">Урок 1: Целевая аудитория</span>
+                    <span class="stat-subtext">Как найти и понять своих клиентов.</span>
+                    <a href="#" class="cta-button secondary">Читать</a>
+                </div>
+                <div class="content-card">
+                    <span class="card-title">Урок 2: Воронка продаж</span>
+                    <span class="stat-subtext">Создание эффективного пути клиента.</span>
+                    <a href="#" class="cta-button secondary">Читать</a>
+                </div>
+                <div class="content-card">
+                    <span class="card-title">Урок 3: Маркетинг в ВК</span>
+                    <span class="stat-subtext">Пошаговое руководство по продвижению.</span>
+                    <a href="#" class="cta-button secondary">Читать</a>
+                </div>
             </div>
 
-            <div class="content-card">
-                <span class="card-title">Бесплатная консультация</span>
-                <span class="stat-subtext">Обсудите вашу задачу с нашим экспертом.</span>
-                <a href="contact.html" class="cta-button">Получить</a>
+            <div id="cases" class="content-section">
+                <div class="content-card">
+                    <span class="card-title">Кейс 1: Рост продаж на 300%</span>
+                    <span class="stat-subtext">Как мы вывели стартап на новый уровень.</span>
+                    <a href="#" class="cta-button">Подробнее</a>
+                </div>
+                <div class="content-card">
+                    <span class="card-title">Кейс 2: Увеличение охвата в 5 раз</span>
+                    <span class="stat-subtext">Наш опыт работы с крупным брендом.</span>
+                    <a href="#" class="cta-button">Подробнее</a>
+                </div>
             </div>
 
-            <div class="content-card">
-                <span class="card-title">Привлечение клиентов из ВК</span>
-                <span class="stat-subtext">Пошаговая инструкция для вашего бизнеса.</span>
-                <a href="lessons.html" class="cta-button secondary">Читать</a>
-            </div>
-            
-            <div class="content-card">
-                <span class="card-title">Наши услуги</span>
-                <span class="stat-subtext">От SMM до SEO — мы закрываем все потребности вашего бизнеса.</span>
-                <a href="cases.html" class="cta-button">Узнать больше</a>
+            <div id="contact" class="content-section">
+                <div class="content-card">
+                    <span class="card-title">Наши контакты</span>
+                    <span class="stat-subtext">Напишите нам, и мы ответим в течение часа.</span>
+                    <a href="#" class="cta-button">Написать в Telegram</a>
+                </div>
+                <div class="content-card">
+                    <span class="card-title">Связаться по почте</span>
+                    <span class="stat-subtext">Email: hello@sovamedia.ru</span>
+                    <a href="#" class="cta-button secondary">Отправить письмо</a>
+                </div>
             </div>
         </div>
 
         <div class="navigation">
-            <a href="index.html" class="nav-item active-nav">
+            <a href="#home" class="nav-item active" data-target="home">
                 <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg>
                 <span>Главная</span>
             </a>
-            <a href="lessons.html" class="nav-item">
+            <a href="#lessons" class="nav-item" data-target="lessons">
                 <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="m180-160 380-160v120q0 33-23.5 56.5T540-120H260q-33 0-56.5-23.5T180-200v-300q0-100 50-175t140-105v-65q0-20-10-35.5t-25-24.5l-40-10q-12-3-19-14t-7-25v-40q0-33 23.5-56.5T260-840h200q33 0 56.5 23.5T540-760v40q0 14-7 25t-19 14l-40 10q-15 4-25 24.5t-10 35.5v65q10-5 25-10.5t30-15.5q80-35 130-110t50-175v-20q0-33 23.5-56.5T700-840h20q33 0 56.5 23.5T800-760v60q0 11-5 21t-15 19l-30 20q-33 23-51.5 55T700-540v300q0 33-23.5 56.5T620-180H480q-50 0-105 10.5t-95 24.5v-20Zm440-220q33 0 56.5-23.5T700-480q0-33-23.5-56.5T620-560q-33 0-56.5 23.5T540-480q0 33 23.5 56.5T620-400Z"/></svg>
                 <span>Уроки</span>
             </a>
-            <a href="cases.html" class="nav-item">
+            <a href="#cases" class="nav-item" data-target="cases">
                 <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm80-160q-12 0-21-9t-9-21q0-12 9-21t21-9q12 0 21 9t9 21q0 12-9 21t-21 9Zm0-120q-12 0-21-9t-9-21q0-12 9-21t21-9q12 0 21 9t9 21q0 12-9 21t-21 9Zm0-120q-12 0-21-9t-9-21q0-12 9-21t21-9q12 0 21 9t9 21q0 12-9 21t-21 9Zm120 240q-12 0-21-9t-9-21v-360q0-12 9-21t21-9h280q12 0 21 9t9 21v360q0 12-9 21t-21 9H400Z"/></svg>
                 <span>Кейсы</span>
             </a>
-            <a href="contact.html" class="nav-item">
+            <a href="#contact" class="nav-item" data-target="contact">
                 <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm0-80h640v-480H160v480Zm320-140q41 0 70-29t29-70q0-41-29-70t-70-29q-41 0-70 29t-29 70q0 41 29 70t70 29Zm0 0Z"/></svg>
                 <span>Контакты</span>
             </a>
         </div>
     </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navItems = document.querySelectorAll('.nav-item');
+            const contentSections = document.querySelectorAll('.content-section');
+
+            navItems.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    // Удаляем активный класс со всех кнопок и секций
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    contentSections.forEach(section => section.classList.remove('active'));
+
+                    // Добавляем активный класс к нажатой кнопке и целевой секции
+                    const targetId = item.getAttribute('data-target');
+                    item.classList.add('active');
+                    document.getElementById(targetId).classList.add('active');
+                });
+            });
+        });
+    </script>
 </body>
 </html>
