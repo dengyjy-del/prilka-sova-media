@@ -15,7 +15,7 @@
             min-height: 100vh;
             margin: 0;
             position: relative;
-            overflow: hidden;
+            overflow: hidden; /* Важно: скрываем прокрутку на уровне body */
         }
 
         .background-blobs {
@@ -93,15 +93,15 @@
         
         .content-wrapper {
             flex-grow: 1;
-            overflow-y: auto;
+            overflow-y: auto; /* Прокрутка только для контента */
             -webkit-overflow-scrolling: touch;
             padding-right: 8px;
             margin-right: -8px;
+            padding-bottom: 80px; /* Отступ для нижней панели */
         }
         
         .content-section {
             display: none;
-            padding-bottom: 80px;
         }
         
         .content-section.active {
@@ -161,9 +161,9 @@
             justify-content: space-around;
             align-items: center;
             height: 60px;
-            background: rgba(255, 255, 255, 0.15); /* Ещё прозрачнее */
+            background: rgba(255, 255, 255, 0.15);
             border-radius: 30px;
-            backdrop-filter: blur(40px); /* Усиленное размытие */
+            backdrop-filter: blur(40px);
             -webkit-backdrop-filter: blur(40px);
             border: 1px solid rgba(255, 255, 255, 0.5);
             padding: 0 16px;
