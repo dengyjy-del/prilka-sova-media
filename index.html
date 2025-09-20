@@ -97,7 +97,7 @@
             -webkit-overflow-scrolling: touch;
             padding-right: 8px;
             margin-right: -8px;
-            padding-bottom: 120px;
+            padding-bottom: 120px; /* Увеличенный отступ для нижней панели */
         }
         
         .content-section {
@@ -171,11 +171,11 @@
             padding: 0 16px;
             box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.05);
             
+            /* Новые свойства для фиксации на экране */
             position: fixed;
             bottom: 24px;
             left: 50%;
             transform: translateX(-50%);
-            z-index: 10;
         }
 
         .nav-item {
@@ -188,8 +188,6 @@
             cursor: pointer;
             text-decoration: none;
             transition: transform 0.2s ease-in-out;
-            position: relative;
-            z-index: 2; 
         }
 
         .nav-item:hover {
