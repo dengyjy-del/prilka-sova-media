@@ -34,20 +34,17 @@
             position: absolute;
             border-radius: 50%;
             opacity: 0.8;
+            filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.2));
         }
 
         .background-blobs::before {
-            width: 40vh;
-            height: 40vh;
-            background: transparent;
-            box-shadow: 
-                0 0 0 10px rgba(230, 77, 107, 0.4),
-                0 0 0 20px rgba(230, 77, 107, 0.2),
-                0 0 0 30px rgba(230, 77, 107, 0.1);
-            top: -10%;
-            left: -10%;
+            width: 70vh;
+            height: 70vh;
+            background: #e64d6b;
+            top: -20%;
+            left: -20%;
             animation: moveShape1 20s infinite ease-in-out alternate;
-            filter: drop-shadow(5px 5px 5px rgba(230, 77, 107, 0.5)) drop-shadow(-5px -5px 5px rgba(230, 77, 107, 0.5));
+            filter: drop-shadow(0 0 25px #e64d6b) hue-rotate(20deg);
         }
 
         .background-blobs::after {
@@ -61,9 +58,9 @@
         }
         
         @keyframes moveShape1 {
-            0% { transform: translate(0, 0) scale(1) rotate(0deg); }
-            50% { transform: translate(50px, 100px) scale(1.1) rotate(180deg); }
-            100% { transform: translate(0, 0) scale(1) rotate(360deg); }
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(50px, 100px) scale(1.1); }
+            100% { transform: translate(0, 0) scale(1); }
         }
 
         @keyframes moveShape2 {
@@ -78,7 +75,7 @@
             height: 90vh;
             background: rgba(255, 255, 255, 0.2);
             border-radius: 40px;
-            backdrop-filter: blur(80px);
+            backdrop-filter: blur(80px); /* Усиленный эффект размытия */
             -webkit-backdrop-filter: blur(80px);
             border: 1px solid rgba(255, 255, 255, 0.4);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
@@ -97,11 +94,11 @@
             -webkit-overflow-scrolling: touch;
             padding-right: 8px;
             margin-right: -8px;
-            padding-bottom: 120px; /* Увеличенный отступ для нижней панели */
         }
         
         .content-section {
             display: none;
+            padding-bottom: 80px;
         }
         
         .content-section.active {
@@ -161,21 +158,14 @@
             justify-content: space-around;
             align-items: center;
             height: 60px;
-            width: 90%;
-            max-width: 400px;
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.3);
             border-radius: 30px;
-            backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
             border: 1px solid rgba(255, 255, 255, 0.5);
             padding: 0 16px;
             box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.05);
-            
-            /* Новые свойства для фиксации на экране */
-            position: fixed;
-            bottom: 24px;
-            left: 50%;
-            transform: translateX(-50%);
+            margin-top: auto;
         }
 
         .nav-item {
@@ -308,9 +298,11 @@
                 item.addEventListener('click', (e) => {
                     e.preventDefault();
                     
+                    // Удаляем активный класс со всех кнопок и секций
                     navItems.forEach(nav => nav.classList.remove('active'));
                     contentSections.forEach(section => section.classList.remove('active'));
 
+                    // Добавляем активный класс к нажатой кнопке и целевой секции
                     const targetId = item.getAttribute('data-target');
                     item.classList.add('active');
                     document.getElementById(targetId).classList.add('active');
