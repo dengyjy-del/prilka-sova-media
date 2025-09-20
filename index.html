@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background: linear-gradient(135deg, #eaecec, #d5d5d5, #c7c7c7); /* Светлый градиент */
+            background: linear-gradient(135deg, #f0f0f0, #e0e0e0, #d0d0d0); /* Серый градиент */
             color: #1a1a1a;
             display: flex;
             justify-content: center;
@@ -27,8 +27,8 @@
             z-index: 0;
             opacity: 0.5;
             background: radial-gradient(circle, #e64d6b 0%, transparent 50%),
-                        radial-gradient(circle at 10% 90%, #e64d6b 0%, transparent 50%),
-                        radial-gradient(circle at 90% 10%, #e64d6b 0%, transparent 50%);
+                        radial-gradient(circle at 10% 90%, #999999 0%, transparent 50%), /* Серые пятна */
+                        radial-gradient(circle at 90% 10%, #aaaaaa 0%, transparent 50%); /* Серые пятна */
             animation: moveBlobs 20s infinite alternate;
         }
 
@@ -40,7 +40,7 @@
         .app-container {
             width: 95%;
             max-width: 450px;
-            height: 90vh; /* Уменьшаем высоту, чтобы оставить место для нижнего бара */
+            height: 90vh;
             background: rgba(255, 255, 255, 0.5);
             border-radius: 40px;
             backdrop-filter: blur(20px);
@@ -56,7 +56,6 @@
             z-index: 1;
         }
         
-        /* Добавляем прокручиваемую область для контента */
         .content-wrapper {
             flex-grow: 1;
             overflow-y: auto;
@@ -125,6 +124,7 @@
             align-items: center;
             padding: 0 16px;
             box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.1);
+            z-index: 2; /* Увеличил z-index, чтобы панель была поверх */
         }
 
         .nav-item {
@@ -151,13 +151,6 @@
         
         .active-nav .nav-icon {
             fill: #e64d6b;
-        }
-
-        @media (max-width: 480px) {
-            .stats-grid {
-                grid-template-columns: 1fr !important;
-                gap: 12px !important;
-            }
         }
     </style>
 </head>
