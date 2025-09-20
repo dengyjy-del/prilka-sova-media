@@ -97,7 +97,7 @@
             -webkit-overflow-scrolling: touch;
             padding-right: 8px;
             margin-right: -8px;
-            padding-bottom: 120px;
+            padding-bottom: 120px; /* Увеличенный отступ для нижней панели */
         }
         
         .content-section {
@@ -171,11 +171,11 @@
             padding: 0 16px;
             box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.05);
             
+            /* Новые свойства для фиксации на экране */
             position: fixed;
             bottom: 24px;
             left: 50%;
             transform: translateX(-50%);
-            z-index: 10;
         }
 
         .nav-item {
@@ -188,8 +188,6 @@
             cursor: pointer;
             text-decoration: none;
             transition: transform 0.2s ease-in-out;
-            position: relative;
-            z-index: 2; /* Помещаем иконки поверх пузыря */
         }
 
         .nav-item:hover {
@@ -205,20 +203,6 @@
         
         .nav-item.active .nav-icon {
             fill: #e64d6b;
-        }
-
-        /* Стиль для анимированного пузыря */
-        .nav-bubble {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            width: 50px;
-            height: 50px;
-            background: #e64d6b;
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-            z-index: 1; /* Пузырь должен быть под иконками */
         }
     </style>
 </head>
@@ -296,7 +280,6 @@
         </div>
 
         <div class="navigation">
-            <div class="nav-bubble"></div>
             <a href="#home" class="nav-item active" data-target="home">
                 <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg>
                 <span>Главная</span>
@@ -320,18 +303,6 @@
         document.addEventListener('DOMContentLoaded', () => {
             const navItems = document.querySelectorAll('.nav-item');
             const contentSections = document.querySelectorAll('.content-section');
-            const navBubble = document.querySelector('.nav-bubble');
-
-            const moveBubble = (target) => {
-                const navRect = navBubble.parentElement.getBoundingClientRect();
-                const targetRect = target.getBoundingClientRect();
-
-                const targetCenter = targetRect.left + (targetRect.width / 2);
-                const navCenter = navRect.left + (navRect.width / 2);
-                const offset = targetCenter - navCenter;
-
-                navBubble.style.transform = `translate(${offset}px, -50%) scale(1.1)`;
-            };
 
             navItems.forEach(item => {
                 item.addEventListener('click', (e) => {
@@ -343,16 +314,8 @@
                     const targetId = item.getAttribute('data-target');
                     item.classList.add('active');
                     document.getElementById(targetId).classList.add('active');
-
-                    moveBubble(item);
                 });
             });
-
-            // Инициализация позиции пузыря при загрузке страницы
-            const activeItem = document.querySelector('.nav-item.active');
-            if (activeItem) {
-                moveBubble(activeItem);
-            }
         });
     </script>
 </body>
