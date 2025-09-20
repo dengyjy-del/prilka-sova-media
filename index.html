@@ -34,20 +34,26 @@
             position: absolute;
             border-radius: 50%;
             opacity: 0.8;
-            filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.2));
         }
 
         .background-blobs::before {
-            width: 70vh;
-            height: 70vh;
-            background: #e64d6b;
-            top: -20%;
-            left: -20%;
+            /* Розовый, контурный, меньший фрактал */
+            width: 40vh; /* Меньший размер */
+            height: 40vh; /* Меньший размер */
+            background: transparent; /* Сделаем его прозрачным */
+            box-shadow: 
+                0 0 0 10px rgba(230, 77, 107, 0.4), /* Внутренний контур */
+                0 0 0 20px rgba(230, 77, 107, 0.2), /* Средний контур */
+                0 0 0 30px rgba(230, 77, 107, 0.1); /* Внешний контур */
+            top: -10%;
+            left: -10%;
             animation: moveShape1 20s infinite ease-in-out alternate;
-            filter: drop-shadow(0 0 25px #e64d6b) hue-rotate(20deg);
+            /* Хроматические аберрации для контура */
+            filter: drop-shadow(5px 5px 5px rgba(230, 77, 107, 0.5)) drop-shadow(-5px -5px 5px rgba(230, 77, 107, 0.5));
         }
 
         .background-blobs::after {
+            /* Серый фрактал без изменений */
             width: 60vh;
             height: 60vh;
             background: #adb5bd;
@@ -58,9 +64,9 @@
         }
         
         @keyframes moveShape1 {
-            0% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(50px, 100px) scale(1.1); }
-            100% { transform: translate(0, 0) scale(1); }
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            50% { transform: translate(50px, 100px) scale(1.1) rotate(180deg); }
+            100% { transform: translate(0, 0) scale(1) rotate(360deg); }
         }
 
         @keyframes moveShape2 {
