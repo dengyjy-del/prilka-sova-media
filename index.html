@@ -15,7 +15,7 @@
             min-height: 100vh;
             margin: 0;
             position: relative;
-            overflow: hidden; /* Важно: скрываем прокрутку на уровне body */
+            overflow: hidden;
         }
 
         .background-blobs {
@@ -93,11 +93,11 @@
         
         .content-wrapper {
             flex-grow: 1;
-            overflow-y: auto; /* Прокрутка только для контента */
+            overflow-y: auto;
             -webkit-overflow-scrolling: touch;
             padding-right: 8px;
             margin-right: -8px;
-            padding-bottom: 80px; /* Отступ для нижней панели */
+            padding-bottom: 120px; /* Увеличенный отступ для нижней панели */
         }
         
         .content-section {
@@ -161,6 +161,8 @@
             justify-content: space-around;
             align-items: center;
             height: 60px;
+            width: 90%;
+            max-width: 400px;
             background: rgba(255, 255, 255, 0.15);
             border-radius: 30px;
             backdrop-filter: blur(40px);
@@ -168,7 +170,12 @@
             border: 1px solid rgba(255, 255, 255, 0.5);
             padding: 0 16px;
             box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.05);
-            margin-top: auto;
+            
+            /* Новые свойства для фиксации на экране */
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         .nav-item {
@@ -301,11 +308,9 @@
                 item.addEventListener('click', (e) => {
                     e.preventDefault();
                     
-                    // Удаляем активный класс со всех кнопок и секций
                     navItems.forEach(nav => nav.classList.remove('active'));
                     contentSections.forEach(section => section.classList.remove('active'));
 
-                    // Добавляем активный класс к нажатой кнопке и целевой секции
                     const targetId = item.getAttribute('data-target');
                     item.classList.add('active');
                     document.getElementById(targetId).classList.add('active');
